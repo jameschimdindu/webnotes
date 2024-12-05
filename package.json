@@ -1,0 +1,29 @@
+{
+  "name": "webnotes",
+  "version": "1.0.0",
+  "description": "Webnotes is a note management app for creating, indexing, editing, and deleting notes. Developed for the Backend Programming course (IT23DO02-3003) at Novia University of Applied Sciences, Finland.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jameschimdindu/webnotes.git"
+  },
+  "author": "jameschimdindu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jameschimdindu/webnotes/issues"
+  },
+  "homepage": "https://github.com/jameschimdindu/webnotes#readme",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "cookie-parser": "^1.4.7",
+    "debug": "^4.3.7",
+    "express": "^4.21.1",
+    "express-handlebars": "^8.0.1",
+    "http-errors": "^2.0.0",
+    "morgan": "^1.10.0",
+    "serve-favicon": "^2.5.0"
+  }
+}
