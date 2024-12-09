@@ -9,7 +9,7 @@ const theInfoController = new InfoController();
 
 // GET methods
 // we connect all the options for 'normal' routing with /, /home and /index
-infoRouter.get('/', theInfoController.getAbout);
-infoRouter.get('/home', theInfoController.getHelp);
+infoRouter.get('/about', theInfoController.getAbout);
+infoRouter.get('/help', theInfoController.getHelp);
 
-module.exports = homeRouter;
+module.exports = infoRouter;

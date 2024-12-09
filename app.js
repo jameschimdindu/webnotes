@@ -22,6 +22,7 @@ const serveFavicon = require('serve-favicon');
 const homeRouter = require('./routes/homeRouter.js');
 const loginRouter = require('./routes/loginRouter.js');
 const notesRouter = require('./routes/notesRouter.js');
+const infoRouter = require('./routes/infoRouter.js');
 // const dom = new JSDOM();
 // const document = dom.window.document;
 
@@ -88,6 +89,8 @@ app.use(favicon(path.join(publicDirectoryPath, './images/favicon.ico')));
 app.use('/', homeRouter);
 app.use('/login', loginRouter);
 app.use('/notes', notesRouter);
+app.use('/about', infoRouter);
+app.use('/help', infoRouter);
 
 /*
 // both the '/' and the '/home' routes will show the index.html page
