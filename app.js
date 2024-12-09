@@ -130,7 +130,8 @@ app.get('/login', (req, res) => {
 */
 
 app.get('/about', (req, res) => {
-    res.sendFile(path.join(publicDirectoryPath, './about.html'));
+    // res.sendFile(path.join(publicDirectoryPath, './about.html'));
+    res.render('about');
 });
 
 /*
@@ -153,7 +154,8 @@ app.get('/notes/index', (req, res)=> {
 */
   
 app.get('/help', (req, res) => {
-    res.sendFile(path.join(publicDirectoryPath, './help.html'));
+    // res.sendFile(path.join(publicDirectoryPath, './help.html'));
+    res.render('help');
 });
 
 /*
