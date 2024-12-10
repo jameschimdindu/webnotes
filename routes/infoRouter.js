@@ -8,7 +8,7 @@ const InfoController = require(path.join(controllersDirectoryPath, './InfoContro
 const theInfoController = new InfoController();
 
 // GET methods
-// we connect all the options for 'normal' routing with /, /home and /index
+// we connect all the options for 'normal' routing with /about, /help pages
 infoRouter.get('/about', theInfoController.getAbout);
 infoRouter.get('/help', theInfoController.getHelp);
 
