@@ -1,5 +1,7 @@
 <h2>Notes</h2>
-<a href="/notes/create">Add new Note</a></li>
+{{#if_eq user.username 'admin'}}
+<li><a href="/notes/create">Add new Note</a></li>
+{{/if_eq}}
 <table>
     <p></p>
     <thead>
@@ -14,6 +16,7 @@
             <td>{{this.title}}</td>
             <td>{{this.body}}</td>
             <td><a href='/notes/update/{{this.title}}'>edit</a></td>
+            {{#if_eq ../user.username 'admin'}}<td><a href='/notes/delete/{{this.title}}'>remove</a></td>{{/if_eq}}
         </tr>
         {{/each}}
     </tbody>

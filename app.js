@@ -37,28 +37,28 @@ const publicDirectoryPath = path.join(__dirname, './public');
  */
 const app = express();
 // creates an Express web application. The express() function is a top-level function exported by the express module
-app.engine('hbs', engine({
-    extname: '.hbs',
+  app.engine('hbs', engine({
+    extname: 'hbs',
     defaultLayout: 'default',
     layoutsDir: __dirname + '/views/layouts/',
     partialsDir: __dirname + '/views/partials/',
     helpers: {
-      if_eq: function (a, b, opts) { 
-          if (a == b) {
-              return opts.fn(this);
-          } else {
-              return opts.inverse(this);
-          }
-      },
-      unless_eq: function (a, b, opts) { 
-          if (a != b) {
-              return opts.fn(this);
-          } else {
-              return opts.inverse(this);
-          }
-      }
+        if_eq: function(a, b, opts) {
+            if(a==b) {
+                return opts.fn(this);
+            }
+
+            return opts.inverse(this)
+        },
+        unless_eq: function(a, b, opts)  {
+            if(a!=b) {
+                return opts.fn(this);
+            }
+
+            return opts.inverse(this)
+        }
     }
-  }));
+}))
 
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');

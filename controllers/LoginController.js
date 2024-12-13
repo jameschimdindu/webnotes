@@ -10,17 +10,23 @@ class LoginController {
             username, password
         } = req.body;       
 
-        if (username == 'novia' && password == "2023") {
+        if (username == 'novia' && password == "novia") {
             // handlebars can also get the context from app.locals so setting it here so it remembers the values
             res.app.locals.user = {username};
             res.app.locals.loginStatus = '';
-        } else {
+        } 
+        else if (username == "admin" && password == "admin") {    
+            // handlebars can also get the context from app.locals so setting it here so it remembers the values
+            res.app.locals.user = {username}; 
+            res.app.locals.loginStatus = '';
+        }
+        else {
             // handlebars can also get the context from app.locals so setting it here so it remembers the values
             res.app.locals.user = null;
             res.app.locals.loginStatus = "Wrong username or password";
         }
 
-        res.redirect('home');
+        res.redirect('/home');
     } 
 }
 
