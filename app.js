@@ -162,7 +162,7 @@ app.get('/help', (req, res) => {
 });
 
 /*
-app.post('/submit-form', (req, res)=> {
+app.post('/submit-login-form', (req, res)=> {
   const username = req.body.username;
   const password = req.body.password;
 
