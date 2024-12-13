@@ -33,6 +33,57 @@ class NoteController {
         }
     }
 
+    getDelete = (req, res, next) => {
+        try {
+            // the req ALWAYS contain the unique instance app so all data that we put there is accessable
+            // here we just check that a user is inlogged and of 'type' admin. Simulated 
+            if(req.app.locals.user && req.app.locals.user.username == 'admin') {
+                const title = req.params.title;
+                
+                const selectedNote = this.noteManager.getNoteByTitle(title);
+                if(selectedNote) {
+                    const info = { mode: 'Remove'};
+                    // have made a separate form for removal
+                    res.render('notes/noteDeleteForm', {  mode: info.mode, title : selectedNote.title, body: selectedNote.body});
+                }
+                else
+                    res.redirect('back');
+            } else {
+                res.redirect('back');
+            }
+        } catch(error) {
+            console.log(error);
+            res.redirect('back');
+        }
+    }
+
+    postDelete = (req, res) => {
+        // in this specific case, with action="" in the form, it will post to the same path as the get,
+        // this means that we also get the title in reg.params.title. Could be used for verify that the params and body contain the same value!
+        
+        // the req ALWAYS contain the unique instance app so all data that we put there is accessable
+        // here we just check that a user is inlogged and of 'type' admin. Simulated 
+        if(req.app.locals.user && req.app.locals.user.username == 'admin') {
+            
+            // pick out the data from the form sent
+            // form send its data in the body!
+            const {
+                title,
+            }  = req.body;
+            
+            if(title) {  
+                this.noteManager.removeNote( title);
+                res.redirect('/notes/index');
+            } else {
+                // there are errors with the entered values. Render the form again.
+                res.redirect('back');
+            } 
+        } else {
+            // the user is not the admin
+            res.redirect('back');
+        }      
+    }
+
     postCreate = (req, res) => {
         // pick out the data from the form sent
         // form send its data in the body!

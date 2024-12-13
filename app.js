@@ -22,6 +22,7 @@ const serveFavicon = require('serve-favicon');
 const homeRouter = require('./routes/homeRouter.js');
 const loginRouter = require('./routes/loginRouter.js');
 const notesRouter = require('./routes/notesRouter.js');
+const infoRouter = require('./routes/infoRouter.js');
 // const dom = new JSDOM();
 // const document = dom.window.document;
 
@@ -36,28 +37,28 @@ const publicDirectoryPath = path.join(__dirname, './public');
  */
 const app = express();
 // creates an Express web application. The express() function is a top-level function exported by the express module
-app.engine('hbs', engine({
-    extname: '.hbs',
+  app.engine('hbs', engine({
+    extname: 'hbs',
     defaultLayout: 'default',
     layoutsDir: __dirname + '/views/layouts/',
     partialsDir: __dirname + '/views/partials/',
     helpers: {
-      if_eq: function (a, b, opts) { 
-          if (a == b) {
-              return opts.fn(this);
-          } else {
-              return opts.inverse(this);
-          }
-      },
-      unless_eq: function (a, b, opts) { 
-          if (a != b) {
-              return opts.fn(this);
-          } else {
-              return opts.inverse(this);
-          }
-      }
+        if_eq: function(a, b, opts) {
+            if(a==b) {
+                return opts.fn(this);
+            }
+
+            return opts.inverse(this)
+        },
+        unless_eq: function(a, b, opts)  {
+            if(a!=b) {
+                return opts.fn(this);
+            }
+
+            return opts.inverse(this)
+        }
     }
-  }));
+}))
 
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
@@ -88,6 +89,8 @@ app.use(favicon(path.join(publicDirectoryPath, './images/favicon.ico')));
 app.use('/', homeRouter);
 app.use('/login', loginRouter);
 app.use('/notes', notesRouter);
+app.use('/about', infoRouter);
+app.use('/help', infoRouter);
 
 /*
 // both the '/' and the '/home' routes will show the index.html page
@@ -130,7 +133,8 @@ app.get('/login', (req, res) => {
 */
 
 app.get('/about', (req, res) => {
-    res.sendFile(path.join(publicDirectoryPath, './about.html'));
+    // res.sendFile(path.join(publicDirectoryPath, './about.html'));
+    res.render('about');
 });
 
 /*
@@ -153,11 +157,12 @@ app.get('/notes/index', (req, res)=> {
 */
   
 app.get('/help', (req, res) => {
-    res.sendFile(path.join(publicDirectoryPath, './help.html'));
+    // res.sendFile(path.join(publicDirectoryPath, './help.html'));
+    res.render('help');
 });
 
 /*
-app.post('/submit-form', (req, res)=> {
+app.post('/submit-login-form', (req, res)=> {
   const username = req.body.username;
   const password = req.body.password;
 
